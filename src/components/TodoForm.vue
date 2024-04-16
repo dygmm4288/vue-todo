@@ -1,11 +1,16 @@
-<script lang="ts">
-export default {
-  name: "TodoForm",
+<script lang="ts" setup>
+import { defineComponent, ref } from "vue";
+
+defineComponent({ name: "TodoForm" });
+
+const text = ref("");
+const submit = () => {
+  alert(text.value);
 };
 </script>
 
 <template>
-  <form>
-    <input type="text" placeholder="write your todo" />
+  <form @submit.prevent="submit">
+    <input type="text" placeholder="write your todo" v-model="text" />
   </form>
 </template>
