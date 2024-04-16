@@ -4,11 +4,7 @@ import { Todo } from "../types/todo.type";
 import TodoItem from "./TodoItem.vue";
 defineComponent({ name: "TodoList", components: { TodoItem } });
 
-const todos = [
-  { id: 1, description: "hello", isDone: false },
-  { id: 2, description: "world", isDone: true },
-  { id: 3, description: "vue", isDone: false },
-] as Todo[];
+const { todos } = defineProps<{ todos: Todo[] }>();
 </script>
 
 <template>
