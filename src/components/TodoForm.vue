@@ -1,13 +1,15 @@
 <script lang="ts" setup>
-import { defineComponent, ref } from "vue";
+import { defineComponent, inject, ref } from "vue";
+import { TODO_KEY } from "../provide/todo.provide";
 
 defineComponent({ name: "TodoForm" });
-const emit = defineEmits<{ "add-todo": [string] }>();
+
+const { addTodo } = inject(TODO_KEY)!;
 
 const text = ref("");
 
 const submit = () => {
-  emit("add-todo", text.value);
+  addTodo(text.value);
   text.value = "";
 };
 </script>
