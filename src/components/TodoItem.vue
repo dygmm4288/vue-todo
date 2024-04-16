@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { inject } from "vue";
-import { TODO_KEY } from "../provide/todo.provide";
+import { useTodo } from "../provide/todo.provide";
 import { Todo } from "../types/todo.type";
 
 const { todo } = defineProps<{ todo: Todo }>();
-const { toggleTodo, removeTodo } = inject(TODO_KEY)!;
+const { removeTodo, toggleTodo } = useTodo();
 </script>
 
 <template>

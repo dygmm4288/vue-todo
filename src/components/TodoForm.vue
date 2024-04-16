@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { defineComponent, inject, ref } from "vue";
-import { TODO_KEY } from "../provide/todo.provide";
+import { defineComponent, ref } from "vue";
+import { useTodo } from "../provide/todo.provide";
 
 defineComponent({ name: "TodoForm" });
 
-const { addTodo } = inject(TODO_KEY)!;
+const { addTodo } = useTodo();
 
 const text = ref("");
 
