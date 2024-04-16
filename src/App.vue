@@ -6,12 +6,7 @@ import { Todo } from "./types/todo.type";
 
 defineComponent({ name: "App", components: { TodoForm, TodoList } });
 
-const todos: Ref<Todo[]> = ref([
-  { id: 1, description: "hello", isDone: false },
-  { id: 2, description: "world", isDone: true },
-  { id: 3, description: "vue", isDone: false },
-  { id: 4, description: "yiruma", isDone: true },
-]);
+const todos: Ref<Todo[]> = ref([]);
 
 const addTodo = (description: string) => {
   const newTodo: Todo = {
@@ -22,12 +17,37 @@ const addTodo = (description: string) => {
 
   todos.value.push(newTodo);
 };
+
+const findIndex = <T extends { id: string | number }>(
+  arr: T[],
+  id: string | number,
+): number => {
+  return arr.findIndex((item) => item.id === id);
+};
+
+const removeTodo = (id: number | string) => {
+  const index = findIndex(todos.value, id);
+  if (index === -1) return;
+
+  todos.value.splice(index, 1);
+};
+
+const toggleTodo = (id: number | string) => {
+  const index = findIndex(todos.value, id);
+
+  if (index === -1) return;
+
+  todos.value[index].isDone = !todos.value[index].isDone;
+};
 </script>
 
 <template>
   <section>
     <h1>What is your focus on today</h1>
     <TodoForm @add-todo="addTodo" />
-    <TodoList :todos="todos" />
+    <TodoList
+      :todos="todos"
+      @remove-todo="removeTodo"
+      @toggle-todo="toggleTodo" />
   </section>
 </template>
