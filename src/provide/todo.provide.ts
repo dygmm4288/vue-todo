@@ -1,5 +1,7 @@
-import { InjectionKey, Ref, inject, provide, ref } from "vue";
+import { InjectionKey, Ref, inject, provide, ref, watch } from "vue";
 import { Todo } from "../types/todo.type";
+
+const LOCAL_STORAGE_TODO_KEY = "todos";
 
 export const TODO_KEY = Symbol("todo-provide") as InjectionKey<{
   todos: Todo[];
@@ -15,7 +17,15 @@ export const useTodo = () => {
 };
 
 export const registerTodo = () => {
-  const todos: Ref<Todo[]> = ref([]);
+  const localTodos = JSON.parse(
+    localStorage.getItem(LOCAL_STORAGE_TODO_KEY) as string,
+  );
+
+  const todos: Ref<Todo[]> = ref(localTodos || []);
+
+  watch(todos.value, () => {
+    localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(todos.value));
+  });
 
   const addTodo = (description: string) => {
     const newTodo: Todo = {

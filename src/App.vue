@@ -5,7 +5,6 @@ import TodoList from "./components/TodoList.vue";
 import { registerTodo } from "./provide/todo.provide";
 
 defineComponent({ name: "App", components: { TodoForm, TodoList } });
-
 registerTodo();
 </script>
 
