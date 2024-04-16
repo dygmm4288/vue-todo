@@ -46,6 +46,7 @@ export const registerTodo = () => {
 
   const removeTodo = (id: number | string) => {
     const index = findIndex(todos.value, id);
+
     if (index === -1) return;
 
     todos.value.splice(index, 1);
