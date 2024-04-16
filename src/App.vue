@@ -12,12 +12,22 @@ const todos: Ref<Todo[]> = ref([
   { id: 3, description: "vue", isDone: false },
   { id: 4, description: "yiruma", isDone: true },
 ]);
+
+const addTodo = (description: string) => {
+  const newTodo: Todo = {
+    id: Date.now(),
+    description,
+    isDone: false,
+  };
+
+  todos.value.push(newTodo);
+};
 </script>
 
 <template>
   <section>
     <h1>What is your focus on today</h1>
-    <TodoForm />
+    <TodoForm @add-todo="addTodo" />
     <TodoList :todos="todos" />
   </section>
 </template>

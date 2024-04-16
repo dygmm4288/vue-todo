@@ -2,10 +2,13 @@
 import { defineComponent, ref } from "vue";
 
 defineComponent({ name: "TodoForm" });
+const emit = defineEmits<{ "add-todo": [string] }>();
 
 const text = ref("");
+
 const submit = () => {
-  alert(text.value);
+  emit("add-todo", text.value);
+  text.value = "";
 };
 </script>
 
