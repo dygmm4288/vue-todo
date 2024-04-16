@@ -1,19 +1,18 @@
 <script lang="ts" setup>
-import type { Todo } from "../types/todo.type";
+import { inject } from "vue";
+import { TODO_KEY } from "../provide/todo.provide";
+import { Todo } from "../types/todo.type";
 
 const { todo } = defineProps<{ todo: Todo }>();
-const emit = defineEmits<{
-  "remove-todo": [number | string];
-  "toggle-todo": [number | string];
-}>();
+const { toggleTodo, removeTodo } = inject(TODO_KEY)!;
 </script>
 
 <template>
   <li>
     <p>{{ todo.description }}</p>
-    <button @click="emit('toggle-todo', todo.id)">
+    <button @click="toggleTodo(todo.id)">
       {{ todo.isDone ? "working" : "done" }}
     </button>
-    <button @click="emit('remove-todo', todo.id)">remove</button>
+    <button @click="removeTodo(todo.id)">remove</button>
   </li>
 </template>

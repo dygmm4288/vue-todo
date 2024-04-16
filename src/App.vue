@@ -48,9 +48,6 @@ provide(TODO_KEY, { todos: todos.value, addTodo, removeTodo, toggleTodo });
   <section>
     <h1>What is your focus on today</h1>
     <TodoForm />
-    <TodoList
-      :todos="todos"
-      @remove-todo="removeTodo"
-      @toggle-todo="toggleTodo" />
+    <TodoList />
   </section>
 </template>
