@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { Ref, defineComponent, ref } from "vue";
+import { Ref, defineComponent, provide, ref } from "vue";
 import TodoForm from "./components/TodoForm.vue";
 import TodoList from "./components/TodoList.vue";
 import { Todo } from "./types/todo.type";
 
 defineComponent({ name: "App", components: { TodoForm, TodoList } });
+
+export const TODO_KEY = Symbol("todo-provide");
 
 const todos: Ref<Todo[]> = ref([]);
 
@@ -39,6 +41,8 @@ const toggleTodo = (id: number | string) => {
 
   todos.value[index].isDone = !todos.value[index].isDone;
 };
+
+provide(TODO_KEY, { todos, addTodo, removeTodo, toggleTodo });
 </script>
 
 <template>
