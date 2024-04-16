@@ -1,11 +1,13 @@
 <script lang="ts">
 import TodoForm from "./components/TodoForm.vue";
+import TodoList from "./components/TodoList.vue";
 
 export default {
   name: "App",
   setup() {},
   components: {
     TodoForm,
+    TodoList,
   },
 };
 </script>
@@ -14,5 +16,6 @@ export default {
   <section>
     <h1>What is your focus on today</h1>
     <TodoForm />
+    <TodoList />
   </section>
 </template>
