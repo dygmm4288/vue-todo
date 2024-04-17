@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { defineComponent } from "vue";
-import { useTodo } from "../provide/todo.provide";
+import store from "../store/todo";
 import TodoItem from "./TodoItem.vue";
 defineComponent({ name: "TodoList", components: { TodoItem } });
 
-const { todos } = useTodo();
+const { todos } = store;
 </script>
 
 <template>

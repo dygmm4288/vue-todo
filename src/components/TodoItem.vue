@@ -1,17 +1,16 @@
 <script lang="ts" setup>
-import { useTodo } from "../provide/todo.provide";
+import store from "../store/todo";
 import { Todo } from "../types/todo.type";
 
 const { todo } = defineProps<{ todo: Todo }>();
-const { removeTodo, toggleTodo } = useTodo();
 </script>
 
 <template>
   <li>
     <p>{{ todo.description }}</p>
-    <button @click="toggleTodo(todo.id)">
+    <button @click="store.toggleTodo(todo.id)">
       {{ todo.isDone ? "working" : "done" }}
     </button>
-    <button @click="removeTodo(todo.id)">remove</button>
+    <button @click="store.removeTodo(todo.id)">remove</button>
   </li>
 </template>

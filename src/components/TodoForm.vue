@@ -1,15 +1,12 @@
 <script lang="ts" setup>
 import { defineComponent, ref } from "vue";
-import { useTodo } from "../provide/todo.provide";
-
+import store from "../store/todo";
 defineComponent({ name: "TodoForm" });
-
-const { addTodo } = useTodo();
 
 const text = ref("");
 
 const submit = () => {
-  addTodo(text.value);
+  store.addTodo(text.value);
   text.value = "";
 };
 </script>
