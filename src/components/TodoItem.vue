@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import store from "../store/todo";
+import { removeTodo, toggleTodo } from "../store/todo";
 import { Todo } from "../types/todo.type";
 
 const { todo } = defineProps<{ todo: Todo }>();
@@ -7,10 +7,10 @@ const { todo } = defineProps<{ todo: Todo }>();
 
 <template>
   <li>
-    <p>{{ todo.description }}</p>
-    <button @click="store.toggleTodo(todo.id)">
-      {{ todo.isDone ? "working" : "done" }}
+    <p>{{ todo.title }}</p>
+    <button @click="toggleTodo(todo.id)">
+      {{ todo.completed ? "working" : "done" }}
     </button>
-    <button @click="store.removeTodo(todo.id)">remove</button>
+    <button @click="removeTodo(todo.id)">remove</button>
   </li>
 </template>

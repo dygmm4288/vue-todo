@@ -3,12 +3,10 @@ import { defineComponent } from "vue";
 import store from "../store/todo";
 import TodoItem from "./TodoItem.vue";
 defineComponent({ name: "TodoList", components: { TodoItem } });
-
-const { todos } = store;
 </script>
 
 <template>
   <ul>
-    <TodoItem v-for="todo in todos" :todo="todo" />
+    <TodoItem v-for="todo in store.todos" :todo="todo" />
   </ul>
 </template>
